@@ -6,42 +6,32 @@ class TreeNode:
 
 
 ###############################################
-####             Your Function             ####
+####        Max Depth Iterative DFS        ####
 ###############################################
-def yourFunction(root: TreeNode):
-    pass
-
-
-###############################################
-####         Boilerplate Functions         ####
-###############################################
-def dfsRecursive(root: TreeNode, target):
-    """Recursive Depth First Search (DFS)"""
-    if root is None:  # Base Case
-        return
-    elif root.val == target:  # root is target
-        return root
-
-    return dfsRecursive(root.left, target) or dfsRecursive(root.right, target)
-
-
-def dfsIterative(root: TreeNode, target):
-    """Iterative Depth First Search (DFS)"""
+def maxDepth(root: TreeNode):
     if root is None:
-        return
+        return 0
+
+    depth = 0
+    max_depth = 0
+
     stack = []
     curr = root
     prev = None
-    while stack or curr is not None:  # While stack isn't empty OR curr isn't None
+    while stack or curr is not None:  # while stack isn't empty OR curr isn't None
         if curr is not None:
-            if curr.val == target:  # if curr node is target, return it
-                return curr
+            depth += 1  # Add 1 to the current depth
             stack.append(curr)  # append curr node to stack
             curr = curr.left  # update curr node to curr.left
         else:
+            if (
+                depth > max_depth
+            ):  # If the current depth is greater than any other path found so far
+                max_depth = depth  # update max_depth
+                depth = 0  # reset current depth
             prev = stack.pop()  # pop node off of stack
             curr = prev.right  # update curr to prev.right
-    return  # target is not in the tree
+    return max_depth
 
 
 # This is how your tree is built from input
@@ -60,4 +50,4 @@ if __name__ == "__main__":
     test_case = input()  # You can hard code this or make many tests
     # test_case = "5 4 3 x x 8 x x 6 x x"
     root = build_tree(iter(test_case.split()), int)  # Change int if different type
-    print(yourFunction(root))  # EDIT THIS TO BE YOUR FUNCTION NAME
+    print(maxDepth(root))  # EDIT THIS TO BE YOUR FUNCTION NAME
