@@ -1,13 +1,16 @@
 class Solution:
+    cache = {0: 0, 1: 1}
+
     def fib(self, n: int) -> int:
-        if n == 0:
-            return 1
-        return n * self.fib(n - 1)
+        if n in self.cache:
+            return self.cache[n]
+        self.cache[n] = self.fib(n - 1) + self.fib(n - 2)
+        return self.cache[n]
 
 
 if __name__ == "__main__":
     # Input n
-    n = 5
+    n = 6
 
     # Initialize Solution object
     s = Solution()
