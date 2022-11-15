@@ -26,7 +26,7 @@ def build_tree(nodes, f):
 
 if __name__ == "__main__":
     # Example Input: 5 4 3 x x 8 x x 6 x x
-    # Reference https://tx.ag/LeetCamp5Slides
+    # Reference https://tx.ag/LeetCamp6Slides
     test_case = input()  # You can hard code this or make many tests
     # test_case = "5 4 3 x x 8 x x 6 x x"
     root = build_tree(iter(test_case.split()), int)  # Change int if different type
